@@ -13,7 +13,7 @@ const GlassmorphicCard: React.FC<GlassmorphicCardProps> = ({
 }) => {
   return (
     <div className={cn(
-      'glassmorphism p-6 md:p-8 animate-scale-in card-hover',
+      'glassmorphism p-6 md:p-8 rounded-2xl animate-scale-in card-hover shadow-xl',
       className
     )}>
       {children}
