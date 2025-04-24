@@ -122,7 +122,10 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
         ) : (
           <Button 
             onClick={onNext}
-            className="bg-gradient-purple hover:opacity-90"
+            className={cn(
+              "bg-gradient-purple hover:opacity-90",
+              isLastQuestion && "bg-green-500 hover:bg-green-600"
+            )}
           >
             {isLastQuestion ? 'Finish Quiz' : 'Next Question'}
           </Button>
