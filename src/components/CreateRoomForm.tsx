@@ -8,6 +8,7 @@ import LoadingSpinner from './LoadingSpinner';
 import GlassmorphicCard from './GlassmorphicCard';
 import { createRoom } from '@/services/quizService';
 import { toast } from 'sonner';
+import { BookOpen, Users, Hash } from 'lucide-react';
 
 const CreateRoomForm: React.FC = () => {
   const navigate = useNavigate();
@@ -30,7 +31,6 @@ const CreateRoomForm: React.FC = () => {
     try {
       const response = await createRoom(name, topic, maxPlayers, rounds);
       
-      // Store the admin details in localStorage
       localStorage.setItem('roomId', response.room_id);
       localStorage.setItem('adminId', response.admin_id);
       localStorage.setItem('userId', response.admin_id);
@@ -49,65 +49,86 @@ const CreateRoomForm: React.FC = () => {
 
   return (
     <GlassmorphicCard className="w-full max-w-md">
-      <h2 className="text-2xl font-bold mb-6 text-center text-quiz-purple">Create Quiz Room</h2>
-      
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div className="space-y-2">
-          <Label htmlFor="name">Room Name</Label>
-          <Input
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter room name"
-            required
-          />
+      <div className="space-y-6">
+        <div className="text-center space-y-2">
+          <h2 className="text-2xl font-bold text-primary">Create Your Quiz Room</h2>
+          <p className="text-muted-foreground">Set up your quiz and invite players to join!</p>
         </div>
         
-        <div className="space-y-2">
-          <Label htmlFor="topic">Topic</Label>
-          <Input
-            id="topic"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            placeholder="e.g., Science, History, etc."
-            required
-          />
-        </div>
-        
-        <div className="grid grid-cols-2 gap-4">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div className="space-y-2">
-            <Label htmlFor="maxPlayers">Max Players</Label>
+            <Label htmlFor="name" className="text-sm font-medium flex items-center gap-2">
+              <BookOpen className="w-4 h-4 text-primary" />
+              Room Name
+            </Label>
             <Input
-              id="maxPlayers"
-              type="number"
-              min={2}
-              max={20}
-              value={maxPlayers}
-              onChange={(e) => setMaxPlayers(parseInt(e.target.value))}
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Enter a room name"
+              className="transition-shadow duration-200 hover:shadow-md focus:shadow-md"
+              required
             />
           </div>
           
           <div className="space-y-2">
-            <Label htmlFor="rounds">Rounds</Label>
+            <Label htmlFor="topic" className="text-sm font-medium flex items-center gap-2">
+              <Hash className="w-4 h-4 text-primary" />
+              Topic
+            </Label>
             <Input
-              id="rounds"
-              type="number"
-              min={1}
-              max={20}
-              value={rounds}
-              onChange={(e) => setRounds(parseInt(e.target.value))}
+              id="topic"
+              value={topic}
+              onChange={(e) => setTopic(e.target.value)}
+              placeholder="e.g., Science, History, etc."
+              className="transition-shadow duration-200 hover:shadow-md focus:shadow-md"
+              required
             />
           </div>
-        </div>
-        
-        <Button 
-          type="submit" 
-          className="w-full bg-gradient-purple hover:opacity-90"
-          disabled={loading}
-        >
-          {loading ? <LoadingSpinner /> : 'Create Room'}
-        </Button>
-      </form>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="maxPlayers" className="text-sm font-medium flex items-center gap-2">
+                <Users className="w-4 h-4 text-primary" />
+                Max Players
+              </Label>
+              <Input
+                id="maxPlayers"
+                type="number"
+                min={2}
+                max={20}
+                value={maxPlayers}
+                onChange={(e) => setMaxPlayers(parseInt(e.target.value))}
+                className="transition-shadow duration-200 hover:shadow-md focus:shadow-md"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <Label htmlFor="rounds" className="text-sm font-medium flex items-center gap-2">
+                <Hash className="w-4 h-4 text-primary" />
+                Rounds
+              </Label>
+              <Input
+                id="rounds"
+                type="number"
+                min={1}
+                max={20}
+                value={rounds}
+                onChange={(e) => setRounds(parseInt(e.target.value))}
+                className="transition-shadow duration-200 hover:shadow-md focus:shadow-md"
+              />
+            </div>
+          </div>
+          
+          <Button 
+            type="submit" 
+            className="w-full bg-primary hover:bg-primary/90 text-white shadow-lg hover:shadow-xl transition-all duration-200"
+            disabled={loading}
+          >
+            {loading ? <LoadingSpinner /> : 'Create Room'}
+          </Button>
+        </form>
+      </div>
     </GlassmorphicCard>
   );
 };

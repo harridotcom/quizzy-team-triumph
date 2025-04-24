@@ -1,28 +1,29 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 240 33% 98%;
-    --foreground: 240 10% 3.9%;
+    --background: 220 33% 98%;
+    --foreground: 220 10% 3.9%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 220 10% 3.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 262 83% 58%;
+    --popover-foreground: 220 10% 3.9%;
+    --primary: 221.2 83% 53%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 262 83% 58%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221.2 83.2% 53.3%;
     --radius: 1rem;
   }
 
@@ -36,12 +37,12 @@
 }
 
 .glassmorphism {
-  @apply backdrop-blur-md bg-white/20 border border-white/30;
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  @apply backdrop-blur-md bg-white/30 border border-white/40;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
 }
 
 .gradient-bg {
-  @apply bg-gradient-to-br from-[#F8F9FF] to-[#E8ECFD];
+  @apply bg-gradient-to-br from-[#F8F9FF] via-[#F0F4FF] to-[#E8ECFD];
 }
 
 .card-hover {
@@ -52,23 +53,19 @@
   @apply transform -translate-y-1 shadow-lg;
 }
 
-@keyframes gradient {
+@keyframes float {
   0% {
-    background-position: 0% 50%;
+    transform: translateY(0px);
   }
   50% {
-    background-position: 100% 50%;
+    transform: translateY(-10px);
   }
   100% {
-    background-position: 0% 50%;
+    transform: translateY(0px);
   }
 }
 
-.card-hover {
-  transition: all 0.3s ease;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }
 
-.card-hover:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
